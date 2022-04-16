@@ -1,4 +1,5 @@
 /* eslint-disable no-undef */
+import '../resource/layout.css'
 import React from 'react';
 import ReactDOM from 'react-dom'
 
@@ -42,7 +43,7 @@ export default class DefaultLayout extends React.Component {
           </Menu>
         </Sider>
         <Layout className="site-layout">
-          <Header className="site-layout-background" style={{ padding: 0 }}>
+          <Header className="site-layout-background" style={{ padding: 10 }}>
             {React.createElement(this.state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
               className: 'trigger',
               onClick: this.toggle,
@@ -51,7 +52,7 @@ export default class DefaultLayout extends React.Component {
           <Content
             className="site-layout-background"
             style={{
-              margin: '24px 16px',
+              margin: '10px',
               padding: 24,
               minHeight: 280,
             }}
