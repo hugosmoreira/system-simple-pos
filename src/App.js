@@ -1,5 +1,5 @@
 import 'antd/dist/antd.css'
-import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import {BrowserRouter, Routes, Route, Navigate} from 'react-router-dom';
 import Homepage from './pages/Homepage';
 import Items from './pages/Items';
 
@@ -10,8 +10,8 @@ function App() {
     <div className="App">
      <BrowserRouter>
       <Routes>
-        <Route path="/home" element={<Homepage />} />
-        <Route path='/items' element={<Items />} />
+          <Route path="/home" element={<ProtectedRoute><Homepage /></ProtectedRoute>} />
+          <Route path="/items" element={<ProtectedRoute><Items /></ProtectedRoute>} />
       </Routes>
      </BrowserRouter>
     </div>
@@ -19,3 +19,15 @@ function App() {
 }
 
 export default App;
+
+export function ProtectedRoute({children}){
+
+  if(localStorage.getItem('pos-user'))
+  {
+    return children
+  }
+  else{
+    return <Navigate to='/login' />
+  }
+
+}

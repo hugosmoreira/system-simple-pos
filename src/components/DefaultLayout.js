@@ -9,9 +9,12 @@ import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
   UserOutlined,
-  VideoCameraOutlined,
-  UploadOutlined,
-} from '@ant-design/icons';
+  HomeOutlined,
+  CopyOutlined,
+  UnorderedListOutlined,
+  LoginOutlined,
+  ShoppingCartOutlined,
+} from "@ant-design/icons";
 
 const { Header, Sider, Content } = Layout;
 
@@ -30,22 +33,25 @@ export default class DefaultLayout extends React.Component {
     return (
       <Layout>
         <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
-          <div className="logo" />
-          <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
-            <Menu.Item key="/home" icon={<UserOutlined />}>
-              Home
+          <div className="logo"><h3>PointOfSale</h3></div>
+          <Menu theme="dark" mode="inline" defaultSelectedKeys={window.location.pathname}>
+            <Menu.Item key="/home" icon={<HomeOutlined />}>
+                <a href="home">Home</a>
             </Menu.Item>
-            <Menu.Item key="/bills" icon={<UserOutlined />}>
-              Bills
+            <Menu.Item key="/bills" icon={<CopyOutlined />}>
+              <a href="/bills">Bills</a>
             </Menu.Item>
-            <Menu.Item key="/items" icon={<UserOutlined />}>
-              Items
+            <Menu.Item key="/items" icon={<UnorderedListOutlined />}>
+            <a href="/items">Items</a>
             </Menu.Item>
             <Menu.Item key="/customers" icon={<UserOutlined />}>
-              Customers
+              <a href="/customers">Customers</a>
             </Menu.Item>
-            <Menu.Item key="/logout" icon={<UserOutlined />}>
-              Logout
+            <Menu.Item key="/logout" icon={<LoginOutlined />} onClick={()=>{
+            localStorage.removeItem('pos-user')
+            navigate('/login')
+          }}>
+              <a href="/logout">Logout</a>
             </Menu.Item>
           </Menu>
         </Sider>
